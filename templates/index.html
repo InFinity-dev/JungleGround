@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{{ url_for('static', filename='index.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='timeline.css') }}" rel="stylesheet">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+
+    <!-- ajax 박재형이 추가함-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <!-- calendar JavaScript     -->
+    <script type="text/javascript" src="{{ url_for('static', filename='jungle_calendar.js') }}"> </script>
+</head>
+<body>
+
+
+<!--modal-->
+<!-- <p>testgit</p> -->
+<!--background wrap-->
+<div class="bg">
+    <!--titlebar-->
+    <div class="titlebar"><p class="titlestring">
+
+        {{session['username']}} 님의 Krafton Jungle 일정
+
+    </p></div>
+    <!--titlebarbutton-->
+{#    <div class="barbuttoncontainer">#}
+{#        <input class=barbutton type="button" value="<이전달">#}
+{#        <input class=barbutton type="button" value="다음달 >">#}
+{#    </div>#}
+    <!--navbar-->
+    <div class="navbarbase">
+        <p class="versiontag">ver.ALPHA</p>
+        <a href="#">
+            <img class="homelogo" src="{{ url_for('static', filename='teamlogo.png') }}" width=187px height=120px alt=""/>
+        </a>
+
+        <!--menu starts here-->
+
+        <div class="navplaceholder">
+            <p class="welcome_top">{{session['username']}} 님 반갑습니다.</p>
+            <p class="welcome_top">[팀원 현황]</p>
+            {% if datas|length == 0 %}
+                <a class="mate_name" href="#">{{session['username']}} {{session['phone']}}
+            {% endif %}
+            {% if datas|length > 0 %}
+                {% for i in datas %}
+                    <a class="mate_name" href="#">{{i.username}} {{i.phone}}</a>
+                {% endfor %}
+            {% endif %}
+
+            <a class="mainmenu" href="{{url_for('memo')}}">
+            <img class="menuicon" src="{{ url_for('static', filename='teamnote_icon.png') }}">TEAM SPACE</a>
+             <a class="mainmenu" href="{{url_for('login')}}">
+            <img class="menuicon" src="{{ url_for('static', filename='logout_icon.png') }}">로그아웃</a>
+        </div>
+
+
+    </div>
+
+
+</div>
+<div class="pagecontentswrap">
+    <div class="timeline">
+        {% for i in task_datas %}
+            {% if i.username=='krafton' %}
+                <div class="container right">
+                    <div class="content">
+                        <h2 class="krafton">{{ i.date }}</h2>
+                        <p>{{ i.title }}</p>
+                    </div>
+                </div>
+            {% else %}
+                <div class="container right">
+                    <div class="content">
+                        <h2>{{ i.date }}</h2>
+                        <p>{{ i.title }}</p>
+                        <p>{{ i.username }}</p>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

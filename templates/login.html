@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{{ url_for('static', filename='login.css') }}" rel="stylesheet">
+
+</head>
+<body>
+<img class="logo" src="{{ url_for('static', filename='teamlogo.png') }}" width="467" height="300" alt=""/>
+
+<form class="loginform" action="{{ url_for('login') }}" method="post">
+
+    <input id="phone" name="phone" class="idinput" type="text"
+           placeholder="핸드폰 번호를 입력하세요. 010-XXXX-XXXX"/>
+    <input id="password" name="password" class="pwinput" type="password"
+           placeholder="비밀번호를 입력하세요"/>
+    <input type="image" src="{{ url_for('static', filename='loginbutton_big.png') }}"
+           class="loginsubmit" value="로그인"></br>
+
+    <p class="option"><a class="bottom" href="{{url_for('register')}}">회원가입</a></p>
+</form>
+
+</body>
+</html>

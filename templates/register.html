@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="{{ url_for('static', filename='register.css') }}" rel="stylesheet">
+</head>
+<body>
+<div class="blurback">
+    <h1>회원 가입</h1>
+    <hr>
+    <form action="{{ url_for('register') }}" method="post">
+        <!--post 형태로 register 에 폼 내용 전달-->
+        <div class="msg_placeholder">
+            <div class="msg">{{ msg }}</div>
+        </div>
+        <hr>
+        <div class="formwrap">
+            <div class="buttonwrap">
+                <p class="p_label">휴대폰 번호</p>
+                <input id="phone" name="phone" type="text"
+                       placeholder="휴대폰 번호를 입력하세요" class="textbox"/>
+            </div>
+        </div>
+        <div class="buttonwrap">
+            <p class="p_label">이름</p>
+            <input id="username" name="username" type="text"
+                   placeholder="이름을 입력하세요" class="textbox"/>
+        </div>
+
+        <div class="buttonwrap">
+            <p class="p_label">이메일</p>
+            <input id="email" name="email" type="text"
+                   placeholder="이메일을 입력하세요." class="textbox"/>
+        </div>
+        <div class="buttonwrap">
+            <p class="p_label">비밀번호</p>
+            <input id="password" name="password" type="password"
+                   placeholder="비밀번호를 입력하세요" class="textbox"/>
+        </div>
+    <br>
+    <hr>
+    <p class="ask">이미 계정을 가지고 계신가요? <a href="{{ url_for('login') }}">로그인 하기</a></p>
+    <input type="submit" class="button1" value="회원가입">
+    </form>
+</div>
+</body>
+</html>
